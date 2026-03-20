@@ -1,12 +1,12 @@
-import pandas as pd
-
 from model.data_type_enum import DataType
 import convert as cvt
 import input as ipt
 import output as opt
+from __version__ import __version__
 
 
 def main():
+    print(f"Data2Excel Converter v{__version__}")
     try:
         # Get user input data
         data_type, data = ipt.get_user_input_data()

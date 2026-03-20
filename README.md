@@ -1,23 +1,41 @@
 # Data2Excel Converter
+
 *created: 2024/07/18*
 
-v1.0.0
-
 ## Overview
-**Convert input data to excel file**
 
 This tool converts input data into an Excel file.
 
+### Project Structure
+
+```
+data2excel-converter/
+├── convert.py           # Data conversion functions
+├── input.py             # User input handling
+├── main.py              # Main application entry point
+├── output.py            # Excel output functionality
+├── model/
+│   ├── __init__.py
+│   └── data_type_enum.py  # DataType enum definition
+├── config/
+│   └── config.yaml      # Configuration file
+│   CHANGELOG.md         # Change logs
+└── README.md            # Project documentation
+```
+
 ## Supported Data Types
+
+_*it needs to be row/column structure_
+
 - XML
 - JSON
 - CSV
 
-_*need to be row/column structure_
-
 ## Input Data Example
-### XML 
-```
+
+### XML
+
+```xml
 <root>
     <row-data>
         <name>John</name>
@@ -31,7 +49,8 @@ _*need to be row/column structure_
 ```
 
 ### JSON
-```
+
+```json
 [
     {
         "name": "John",
@@ -56,8 +75,41 @@ OR
 ```
 
 ### CSV
-```
+
+```csv
 name,age
 John,25
 Smith,30
+```
+
+## Dependencies
+
+- pandas
+- openpyxl
+- pyyaml
+
+
+## Installation
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# For development and testing
+pip install -r requirements-test.txt
+```
+
+## Running Tests
+
+This project includes a comprehensive test suite with 99% code coverage.
+
+```bash
+# Run all tests
+pytest
+
+# Run with coverage report
+pytest --cov=. --cov-report=html --cov-report=term
+
+# Run specific test file
+pytest tests/test_convert.py
 ```

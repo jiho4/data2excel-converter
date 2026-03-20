@@ -5,9 +5,16 @@ import yaml
 
 from model.data_type_enum import DataType
 
-with open('config/config.yaml') as f:
-    __conf = yaml.safe_load(f)
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_CONFIG_PATH = os.path.join(_BASE_DIR, 'config', 'config.yaml')
 
+try:
+    with open(_CONFIG_PATH) as f:
+        __conf = yaml.safe_load(f)
+except FileNotFoundError:
+    raise FileNotFoundError(f"Config file not found: {_CONFIG_PATH}")
+except yaml.YAMLError as e:
+    raise ValueError(f"Config file parse error: {e}")
 
 OUTPUT_EXCEL_DIR = __conf['output_excel_dir']
 

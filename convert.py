@@ -6,9 +6,6 @@ import xml.etree.ElementTree as Et
 
 def xml2excel(xml_data):
     try:
-        # Escape special characters in XML data
-        xml_data = xml_data.replace("&", "&amp;")
-
         # Parse the XML data
         root = Et.fromstring(xml_data)
 
@@ -17,7 +14,7 @@ def xml2excel(xml_data):
         for row in root:
             columns = {}
             for col in row:
-                columns[col.tag] = col.text
+                columns[col.tag] = "".join(col.itertext())
             rows.append(columns)
 
         return pd.DataFrame(rows)
@@ -37,4 +34,7 @@ def json2excel(json_data):
 
 
 def csv2excel(csv_data):
-    return pd.read_csv(StringIO(csv_data))
+    try:
+        return pd.read_csv(StringIO(csv_data))
+    except Exception as e:
+        raise ValueError(f"CSV parse error: {e}")
