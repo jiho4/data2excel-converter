@@ -1,6 +1,8 @@
 # Data2Excel Converter
 *created: 2024/07/18*
 
+v1.0.0
+
 ## Overview
 **Convert input data to excel file**
 
